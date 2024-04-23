@@ -27,3 +27,6 @@ vim.keymap.set("n", "<leader>f/", "<cmd>FzfLua blines<CR>", { desc = "[F]ind [/]
 -- Down/Up with centering
 vim.api.nvim_set_keymap("n", "<C-d>", "<C-d>zz", { noremap = true })
 vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zz", { noremap = true })
+
+-- Copy file content to clipboard
+vim.api.nvim_set_keymap("n", "<leader>yf", "<cmd>%y+<CR>", { noremap = true, desc = "[Y]ank [F]ile" })
