@@ -3,10 +3,8 @@ return {
     opts = {
         inlay_hints = { enabled = true },
         servers = {
+            basedpyright = {},
             pyright = {},
-            ruff_lsp = {
-                enabled = false,
-            },
         },
     },
 }
