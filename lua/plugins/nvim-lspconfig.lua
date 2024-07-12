@@ -3,7 +3,9 @@ return {
     opts = {
         inlay_hints = { enabled = true },
         servers = {
-            basedpyright = {},
+            basedpyright = {
+                analysis = { typeCheckingMode = "standard" },
+            },
             pyright = {},
         },
     },

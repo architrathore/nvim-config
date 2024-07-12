@@ -4,5 +4,6 @@ return {
         indent = {
             enable = true,
         },
+        ensure_installed = { "sql" },
     },
 }
