@@ -1,7 +1,6 @@
 (call
   function:
     (attribute
-      ; object: (identifier) @spark (#eq? @spark "spark")
       attribute: (identifier) @sql (#eq? @sql  "sql")
     )
   arguments:
