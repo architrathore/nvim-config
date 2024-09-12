@@ -14,7 +14,6 @@ require("telescope").setup({
         },
     },
 })
---   Warn  09:35:02 notify.warn [Fzf-lua] `git status` took 8 seconds, consider using `:FzfLua files git_icons=false` in this repository.
 
 vim.keymap.set("n", "<leader>ff", "<cmd>FzfLua git_files git_icons=false<CR>", { desc = "[F]ind [F]iles" })
 vim.keymap.set("n", "<leader>fa", "<cmd>FzfLua files git_icons=false<CR>", { desc = "[F]ind [A]ll files" })
@@ -29,5 +28,21 @@ vim.keymap.set("n", "<leader>f/", "<cmd>FzfLua blines git_icons=false<CR>", { de
 vim.api.nvim_set_keymap("n", "<C-d>", "<C-d>zz", { noremap = true })
 vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zz", { noremap = true })
 
--- Copy file content to clipboard
+-- Copy entire file content to clipboard
 vim.api.nvim_set_keymap("n", "<leader>yf", "<cmd>%y+<CR>", { noremap = true, desc = "[Y]ank [F]ile" })
+-- Select all
+vim.api.nvim_set_keymap("n", "<leader>sa", "ggVG", { noremap = true, desc = "[S]elect [A]ll" })
+
+vim.keymap.set("n", "<leader>ga", function()
+    local file = vim.fn.expand("%:p")
+    local cmd = string.format('git add "%s"', file)
+    local output = vim.fn.system(cmd)
+    if vim.v.shell_error == 0 then
+        vim.notify("File added to Git tracking", vim.log.levels.INFO)
+    else
+        vim.notify("Failed to add file to Git tracking: " .. output, vim.log.levels.ERROR)
+    end
+end, { desc = "Git Add Current File" })
+
+-- Enable/disable Copilot
+vim.keymap.set("n", "<leader>ct", "<cmd>Copilot toggle<CR>", { desc = "[C]opilot [T]oggle" })
