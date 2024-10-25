@@ -35,7 +35,7 @@ vim.api.nvim_set_keymap("n", "<leader>sa", "ggVG", { noremap = true, desc = "[S]
 
 vim.keymap.set("n", "<leader>ga", function()
     local file = vim.fn.expand("%:p")
-    local cmd = string.format('git add "%s"', file)
+    local cmd = string.format('git add -N "%s"', file)
     local output = vim.fn.system(cmd)
     if vim.v.shell_error == 0 then
         vim.notify("File added to Git tracking", vim.log.levels.INFO)
