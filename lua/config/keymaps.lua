@@ -46,3 +46,7 @@ end, { desc = "Git Add Current File" })
 
 -- Enable/disable Copilot
 vim.keymap.set("n", "<leader>ct", "<cmd>Copilot toggle<CR>", { desc = "[C]opilot [T]oggle" })
+
+-- Quality of life
+vim.keymap.set("n", "<C-c>", "ciw", { desc = "Change Inner Word" })
+vim.keymap.set("n", "<C-d>", "yygccp", { desc = "Comment and duplicate line" })
