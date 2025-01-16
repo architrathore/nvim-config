@@ -4,7 +4,7 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
         winopts = {
-            fullscreen = true,
+            -- fullscreen = true,
             preview = {
                 layout = "vertical",
                 vertical = "down:80%",
