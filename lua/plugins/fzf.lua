@@ -10,5 +10,8 @@ return {
                 vertical = "down:80%",
             },
         },
+        lsp = {
+            async_or_timeout = 50000,
+        },
     },
 }
