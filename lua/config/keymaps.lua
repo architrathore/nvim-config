@@ -31,7 +31,7 @@ vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zz", { noremap = true })
 -- Copy entire file content to clipboard
 vim.api.nvim_set_keymap("n", "<leader>yf", "<cmd>%y+<CR>", { noremap = true, desc = "[Y]ank [F]ile" })
 -- Select all
-vim.api.nvim_set_keymap("n", "<leader>sa", "ggVG", { noremap = true, desc = "[S]elect [A]ll" })
+vim.api.nvim_set_keymap("n", "<leader>sf", "ggVG", { noremap = true, desc = "[S]elect [A]ll" })
 
 vim.keymap.set("n", "<leader>ga", function()
     local file = vim.fn.expand("%:p")
@@ -49,4 +49,8 @@ vim.keymap.set("n", "<leader>ct", "<cmd>Copilot toggle<CR>", { desc = "[C]opilot
 
 -- Quality of life
 vim.keymap.set("n", "<C-c>", "ciw", { desc = "Change Inner Word" })
--- vim.keymap.set("n", "<C-d>", "yygccp", { desc = "Comment and duplicate line" })
+vim.keymap.set("n", "<C-p>", function()
+    vim.cmd.normal("yy")
+    vim.cmd.normal("gcc")
+    vim.cmd.normal("p")
+end, { desc = "Comment and duplicate line" })
