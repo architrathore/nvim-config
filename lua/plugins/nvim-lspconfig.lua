@@ -15,7 +15,7 @@ return {
                         configs.zlsp = {
                             default_config = {
                                 cmd = {
-                                    "/Users/architr/.cache-zoolander/prebuilt-binaries-cache/zlsp/4db39569fe9b429688529f45ca7a0376fcc2e51a52b6e6fc258a6584d612db19/bin",
+                                    "/Users/architr/.cache-zoolander/prebuilt-binaries-cache/zlsp/7da0639cadff0a67f13ea2ad93e1df7062f254da693e95ab737dce353b6acaa6/bin",
                                     "lsp",
                                     "--buildhelper=false",
                                     "--allowlists=src/python/monolint/python/allowlist",
