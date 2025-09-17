@@ -1,6 +1,6 @@
 return {
     -- move selections in any direction
-    { "echasnovski/mini.move" },
+    { "nvim-mini/mini.move" },
     -- Session management
     -- {
     --     "echasnovski/mini.sessions",
