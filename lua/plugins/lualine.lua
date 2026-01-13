@@ -9,6 +9,10 @@ return {
                     path = 1,
                 },
             },
+            lualine_x = {
+                "venv-selector",
+                "filetype",
+            },
         },
     },
 }
