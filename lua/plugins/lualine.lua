@@ -10,7 +10,7 @@ return {
                 },
             },
             lualine_x = {
-                "venv-selector",
+                -- "venv-selector",
                 "filetype",
             },
         },
