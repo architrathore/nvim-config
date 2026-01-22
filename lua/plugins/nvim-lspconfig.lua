@@ -2,8 +2,8 @@ return {
     {
         "neovim/nvim-lspconfig",
         opts = {
-            -- Register your custom server name here.
             servers = {
+                ty = {},
                 zlsp = {},
             },
             -- Use the `setup` key to override specific server setups.
