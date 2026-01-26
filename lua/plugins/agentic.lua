@@ -1,0 +1,60 @@
+return {
+    -- "carlos-algms/agentic.nvim",
+    -- opts = {
+    --     debug = true,
+    --     provider = "opencode-acp",
+    --     acp_providers = {
+    --         -- ["claude-acp"] = {
+    --         --     name = "Claude ACP (Official)",
+    --         --     command = "claude-code-acp",
+    --         --     args = {},
+    --         --     env = {
+    --         --         NODE_NO_WARNINGS = "1",
+    --         --         IS_AI_TERMINAL = "1",
+    --         --         -- Add API key if needed after testing
+    --         --         -- ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY"),
+    --         --     },
+    --         -- },
+    --         ["opencode-acp"] = {
+    --             name = "OpenCode ACP",
+    --             command = "opencode",
+    --             args = { "acp" },
+    --             env = {},
+    --         },
+    --     },
+    -- },
+    -- keys = {
+    --     {
+    --         "<C-\\>",
+    --         function()
+    --             require("agentic").toggle()
+    --         end,
+    --         mode = { "n", "v", "i" },
+    --         desc = "Toggle Agentic Chat",
+    --     },
+    --     {
+    --         "<leader>aa",
+    --         function()
+    --             require("agentic").add_selection()
+    --         end,
+    --         mode = { "v" },
+    --         desc = "Add selection to Agentic",
+    --     },
+    --     {
+    --         "<leader>af",
+    --         function()
+    --             require("agentic").add_file()
+    --         end,
+    --         mode = { "n" },
+    --         desc = "Add file to Agentic",
+    --     },
+    --     {
+    --         "<leader>an",
+    --         function()
+    --             require("agentic").new_session()
+    --         end,
+    --         mode = { "n" },
+    --         desc = "New Agentic session",
+    --     },
+    -- },
+}
