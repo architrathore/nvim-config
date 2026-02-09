@@ -3,6 +3,11 @@ return {
     ---@module 'oil'
     ---@type oil.SetupOpts
     opts = {
+        float = {
+            border = "rounded",
+            max_width = 0.8,
+            max_height = 0.8,
+        },
         view_options = {
             show_hidden = true,
             is_always_hidden = function(name, bufnr)
