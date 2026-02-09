@@ -1,10 +1,15 @@
 return {
     {
         "neovim/nvim-lspconfig",
+        ---@class PluginLspOpts
         opts = {
             servers = {
                 ty = {},
                 zlsp = {},
+                pyright = {
+                    mason = false,
+                    autostart = false,
+                },
             },
             -- Use the `setup` key to override specific server setups.
             setup = {
