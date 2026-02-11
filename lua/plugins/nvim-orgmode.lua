@@ -4,10 +4,13 @@ return {
     config = function()
         local orgMenu = require("org-modern.menu")
         -- Setup orgmode
+        ---@type OrgConfigOpts
         require("orgmode").setup({
 
             org_agenda_files = "~/orgfiles/**/*",
             org_default_notes_file = "~/orgfiles/refile.org", -- Default capture location
+
+            org_startup_folded = "showeverything", -- Start with all sections unfolded
 
             ui = {
                 input = {
@@ -53,18 +56,20 @@ return {
             org_todo_keywords = { "TODO(t)", "NEXT(n)", "WAITING(w)", "|", "DONE(d)", "CANCELLED(c)" },
 
             org_capture_templates = {
-                -- 1. General Inbox / Refile (The "Dump" location)
+                -- 1. Immediate TODOs (Straight to todo.org)
                 t = {
-                    description = "Task (Refile)",
-                    template = "* TODO %?\n  %U",
-                    target = "~/orgfiles/refile.org",
-                },
-
-                -- 2. Immediate TODOs (Straight to todo.org)
-                T = {
                     description = "Todo (Immediate)",
                     template = "* TODO %?\n  DEADLINE: %T",
                     target = "~/orgfiles/todo.org",
+                    properties = { empty_lines = { before = 1 } },
+                },
+
+                -- 2. General Inbox / Refile (The "Dump" location)
+                T = {
+                    description = "Task (Refile)",
+                    template = "* TODO %?\n  %U",
+                    target = "~/orgfiles/refile.org",
+                    properties = { empty_lines = { before = 1 } },
                 },
 
                 -- 3. Meeting Notes / General Notes
@@ -72,6 +77,7 @@ return {
                     description = "Note",
                     template = "* %? :note:\n  %u",
                     target = "~/orgfiles/notes.org",
+                    properties = { empty_lines = { before = 1 } },
                 },
 
                 -- 4. Journaling (Date-tree based)
@@ -87,6 +93,7 @@ return {
                     description = "Waiting For",
                     template = "* WAITING %? :waiting:\n  %U",
                     target = "~/orgfiles/refile.org",
+                    properties = { empty_lines = { before = 1 } },
                 },
             },
         })
