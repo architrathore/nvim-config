@@ -1,4 +1,4 @@
 return {
-    "lukas-reineke/headlines.nvim",
-    config = true,
+    -- "lukas-reineke/headlines.nvim",
+    -- enabled = false,
 }
