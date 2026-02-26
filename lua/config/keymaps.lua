@@ -30,6 +30,23 @@ vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zz", { noremap = true })
 
 -- Copy entire file content to clipboard
 vim.api.nvim_set_keymap("n", "<leader>yf", "<cmd>%y+<CR>", { noremap = true, desc = "[Y]ank [F]ile" })
+
+-- Yank file name + line number
+vim.keymap.set("n", "<leader>yl", function()
+    local file = vim.fn.expand("%:p")
+    if file == "" then
+        vim.notify("No file in current buffer", vim.log.levels.WARN)
+        return
+    end
+
+    local relative_file = vim.fn.fnamemodify(file, ":.")
+
+    local line = vim.api.nvim_win_get_cursor(0)[1]
+    local location = string.format("%s:%d", relative_file, line)
+    vim.fn.setreg("+", location)
+    vim.notify("Copied: " .. location, vim.log.levels.INFO)
+end, { desc = "[Y]ank Fi[L]e name + line number" })
+
 -- Select all
 vim.api.nvim_set_keymap("n", "<leader>sf", "ggVG", { noremap = true, desc = "[S]elect [A]ll" })
 
