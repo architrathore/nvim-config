@@ -2,7 +2,7 @@ local pinned_lsp_versions = {
     -- Newer ty releases still reject Zoolander's uv-style py_universe
     -- metadata, so version bumps alone don't remove the overlay workaround.
     ty = "0.0.23",
-    ruff = "0.15.10",
+    ruff = "0.15.06",
 }
 
 local zoolander = require("config.zoolander")
