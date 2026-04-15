@@ -1,27 +1,11 @@
 local pinned_lsp_versions = {
+    -- Newer ty releases still reject Zoolander's uv-style py_universe
+    -- metadata, so version bumps alone don't remove the overlay workaround.
     ty = "0.0.14",
     ruff = "0.14.0",
 }
 
-local host_type_file = "/pay/conf/host_type"
-
-local function get_host_type()
-    local lines = vim.fn.readfile(host_type_file)
-    if vim.v.shell_error ~= 0 or not lines or #lines == 0 then
-        return nil
-    end
-
-    local host_type = vim.trim(lines[1] or "")
-    if host_type == "" then
-        return nil
-    end
-
-    return host_type
-end
-
-local function is_remote()
-    return get_host_type() ~= nil
-end
+local zoolander = require("config.zoolander")
 
 local function pinned_lsp_specs()
     local specs = {}
@@ -33,7 +17,7 @@ local function pinned_lsp_specs()
 end
 
 local function ensure_pinned_remote_packages(registry)
-    if not is_remote() then
+    if not zoolander.is_remote() then
         return
     end
 
@@ -59,7 +43,7 @@ return {
     {
         "neovim/nvim-lspconfig",
         opts = function(_, opts)
-            if not is_remote() then
+            if not zoolander.is_remote() then
                 return
             end
 
@@ -75,7 +59,7 @@ return {
         "mason-org/mason-lspconfig.nvim",
         opts = function(_, opts)
             opts.ensure_installed = opts.ensure_installed or {}
-            if is_remote() then
+            if zoolander.is_remote() then
                 vim.list_extend(opts.ensure_installed, pinned_lsp_specs())
             end
         end,

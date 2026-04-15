@@ -1,21 +1,27 @@
---- Find the zoolander root directory across Mac, devbox, and mydata environments.
---- Checks these paths in order:
----   Mac (mint monorepo): ~/stripe/mint/zoolander
----   Mac (legacy):        ~/stripe/zoolander
----   Devbox/mydata:       /pay/src/zoolander
---- @return string|nil zoolander root path, or nil if not found
-local function find_zoolander_root()
-    local candidates = {
-        vim.fn.expand("~/stripe/mint/zoolander"),
-        vim.fn.expand("~/stripe/zoolander"),
-        "/pay/src/zoolander",
-    }
-    for _, dir in ipairs(candidates) do
-        if vim.fn.isdirectory(dir) == 1 and vim.fn.filereadable(dir .. "/WORKSPACE") == 1 then
-            return dir
-        end
+local zoolander = require("config.zoolander")
+
+--- Build ty config, preferring the zoolander universe when present.
+--- @return table
+local function ty_config()
+    local overlay_python = zoolander.ensure_ty_overlay()
+    if not overlay_python then
+        return {}
     end
-    return nil
+
+    return {
+        settings = {
+            ty = {
+                configuration = {
+                    environment = {
+                        -- Point ty at the cached overlay env so import
+                        -- resolution uses the real universe but avoids the
+                        -- incompatible uv-style pyvenv.cfg.
+                        python = overlay_python,
+                    },
+                },
+            },
+        },
+    }
 end
 
 --- Build the zlsp lspconfig definition for a given zoolander root.
@@ -50,7 +56,7 @@ end
 local function setup_zlsp(_, server_opts)
     local configs = require("lspconfig.configs")
     if not configs.zlsp then
-        local zoo_dir = find_zoolander_root()
+        local zoo_dir = zoolander.find_root()
         if not zoo_dir then
             vim.notify("zlsp: could not find zoolander directory", vim.log.levels.WARN)
             return true
@@ -81,7 +87,7 @@ return {
         ---@class PluginLspOpts
         opts = {
             servers = {
-                ty = {},
+                ty = ty_config(),
                 zlsp = {},
                 pyright = {
                     mason = false,
