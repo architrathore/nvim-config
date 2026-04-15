@@ -81,13 +81,7 @@ return {
         ---@class PluginLspOpts
         opts = {
             servers = {
-                ty = {
-                    settings = {
-                        ty = {
-                            python = vim.fn.exepath("python"),
-                        },
-                    },
-                },
+                ty = {},
                 zlsp = {},
                 pyright = {
                     mason = false,
