@@ -7,18 +7,19 @@ vim.o.textwidth = 100
 
 vim.g.node_host_prog = "/Users/architr/.nodenv/versions/24.0.0/bin/node"
 
--- Use OSC 52 clipboard when running over SSH (for remote yank to local clipboard)
-if os.getenv("SSH_TTY") then
-  vim.opt.clipboard = "unnamedplus"
+-- Expose an OSC52 clipboard provider when Neovim is running on a remote host.
+if vim.env.SSH_TTY or vim.env.SSH_CONNECTION then
+  local osc52 = require("vim.ui.clipboard.osc52")
+
   vim.g.clipboard = {
     name = "OSC 52",
     copy = {
-      ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-      ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+      ["+"] = osc52.copy("+"),
+      ["*"] = osc52.copy("*"),
     },
     paste = {
-      ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
-      ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+      ["+"] = osc52.paste("+"),
+      ["*"] = osc52.paste("*"),
     },
   }
 end
