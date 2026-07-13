@@ -5,6 +5,7 @@ return {
     opts = {
         ---@class snacks.picker.Config
         picker = {
+            enabled = false,
             matcher = {
                 frecency = true,
             },
