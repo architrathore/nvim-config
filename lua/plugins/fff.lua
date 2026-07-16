@@ -11,6 +11,7 @@ return {
             enabled = false,
             show_scores = true,
         },
+        prompt = "  ",
         layout = {
             preview_position = "right",
             flex = {
@@ -18,6 +19,17 @@ return {
                 wrap = "bottom",
             },
             prompt_position = "top",
+            border = "rounded",
+        },
+        hl = {
+            border = "FFFBorder",
+            title = "FFFTitle",
+            prompt = "FFFPrompt",
+            matched = "FFFMatched",
+            cursor = "FFFCursor",
+            frecency = "FFFFrecency",
+            directory_path = "FFFDirectory",
+            scrollbar = "FFFScrollbar",
         },
     },
     lazy = false, -- the plugin lazy-initialises itself

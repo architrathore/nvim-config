@@ -2,6 +2,16 @@
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 -- Add any additional autocmds here
 
+-- disable diagnostics and spellcheck by default in markdown files
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("markdown_no_diagnostics_spell", { clear = true }),
+  pattern = "markdown",
+  callback = function(args)
+    vim.opt_local.spell = false
+    vim.diagnostic.enable(false, { bufnr = args.buf })
+  end,
+})
+
 if vim.env.SSH_TTY or vim.env.SSH_CONNECTION then
   local copy_osc52 = require("vim.ui.clipboard.osc52").copy("+")
 
