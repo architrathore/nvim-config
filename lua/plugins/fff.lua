@@ -11,6 +11,7 @@ return {
             enabled = false,
             show_scores = true,
         },
+        enable_home_dir_scanning = false,
         prompt = "  ",
         layout = {
             preview_position = "right",
