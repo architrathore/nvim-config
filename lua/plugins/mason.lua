@@ -39,6 +39,18 @@ local function ensure_pinned_remote_packages(registry)
     end
 end
 
+-- Mason uses vim.ui.select for its language filter. Keep file searching on fff
+-- while using the already-installed Snacks picker for this one selector.
+local function configure_language_filter_picker()
+    local default_select = vim.ui.select
+    vim.ui.select = function(items, select_opts, on_choice)
+        if select_opts and select_opts.kind == "mason.ui.language-filter" then
+            return require("snacks").picker.select(items, select_opts, on_choice)
+        end
+        return default_select(items, select_opts, on_choice)
+    end
+end
+
 return {
     {
         "neovim/nvim-lspconfig",
@@ -67,6 +79,7 @@ return {
     {
         "mason-org/mason.nvim",
         config = function(_, opts)
+            configure_language_filter_picker()
             require("mason").setup(opts)
 
             local registry = require("mason-registry")
