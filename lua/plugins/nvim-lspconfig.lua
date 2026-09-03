@@ -99,4 +99,13 @@ return {
             },
         },
     },
+    {
+        "stevearc/nvim-stripe-configs",
+        url = "git@git.corp.stripe.com:stevearc/nvim-stripe-configs.git",
+        dependencies = { "neovim/nvim-lspconfig" },
+        enabled = zoolander.is_remote,
+        config = function()
+            vim.lsp.enable("stripe_sorbet")
+        end,
+    },
 }
